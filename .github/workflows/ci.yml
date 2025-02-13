@@ -23,6 +23,12 @@ jobs:
       
       - name: Check code style
         run: test -z $(go fmt ./...)
+      
+      - name: Install gosec
+        run: go install github.com/securego/gosec/v2/cmd/gosec@latest
+
+      - name: Check security with gosec
+        run: gosec ./...
   
   styles:
     name: Style
